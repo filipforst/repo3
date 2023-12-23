@@ -29,7 +29,7 @@ jobs:
           --machine-type e2-medium \
           --zone europe-west3-a
 
-     - name: Install Docker
+    - name: Install Docker
       run: |
         sudo apt-get update
         sudo apt-get install -y docker.io
