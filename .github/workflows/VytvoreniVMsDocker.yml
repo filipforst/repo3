@@ -31,7 +31,7 @@ jobs:
 
     - name: Install Docker
       run: |
-        gcloud compute ssh githubvm --zone=europe-west3-a --coomand "\
+        gcloud compute ssh githubvm --zone=europe-west3-a --command "\
           sudo apt-get remove docker docker-engine docker.io
           sudo apt-get update
           sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
@@ -45,5 +45,5 @@ jobs:
 
     - name: Build and Run Docker Container
       run: |
-        gcloud compute ssh githubvm --zone=europe-west3-a --coomand "\
+        gcloud compute ssh githubvm --zone=europe-west3-a --command "\
           docker run --name nginx -d -p 80:80 kofolak80/github:master"
