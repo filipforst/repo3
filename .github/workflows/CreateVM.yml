@@ -28,3 +28,12 @@ jobs:
           --image-project debian-cloud \
           --machine-type e2-medium \
           --zone europe-west3-a
+
+     - name: Install Docker
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+
+    - name: Build and Run Docker Container
+      run: |
+        docker run --name nginx -d -p 80:80 kofolak80/github:master
