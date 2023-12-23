@@ -31,17 +31,19 @@ jobs:
 
     - name: Install Docker
       run: |
-        sudo apt-get remove docker docker-engine docker.io
-        sudo apt-get update
-        sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        sudo apt-key fingerprint 0EBFCD88
-        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        xenial \
-        stable"
-        sudo apt-get update
-        sudo apt-get install docker-ce
+        gcloud compute ssh githubvm --zone=europe-west3-a --coomand "\
+          sudo apt-get remove docker docker-engine docker.io
+          sudo apt-get update
+          sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo apt-key fingerprint 0EBFCD88
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+          xenial \
+          stable"
+          sudo apt-get update
+          sudo apt-get install docker-ce"
 
     - name: Build and Run Docker Container
       run: |
-        docker run --name nginx -d -p 80:80 kofolak80/github:master
+        gcloud compute ssh githubvm --zone=europe-west3-a --coomand "\
+          docker run --name nginx -d -p 80:80 kofolak80/github:master"
